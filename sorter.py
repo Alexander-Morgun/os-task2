@@ -7,6 +7,7 @@ def make_bad(f, p=10, message=''):
     from random import randrange as rand
     if message == '':
         message = 'Error at ' + f.__name__
+
     def wrapper(*args, **kwargs):
         if rand(100) < p:
             raise Exception(message)
@@ -14,9 +15,11 @@ def make_bad(f, p=10, message=''):
             return f(*args, **kwargs)
     return wrapper
 
+
 @make_bad
 def append(array, element):
     array.append(element)
+
 
 @make_bad
 def read_line(file):
